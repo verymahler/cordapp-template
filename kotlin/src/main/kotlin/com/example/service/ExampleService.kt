@@ -10,7 +10,7 @@ import net.corda.core.node.PluginServiceHub
  * corresponding factory will be used to create the flow which will communicate with the other side. If there is no
  * mapping, then the session attempt is rejected.
  *
- * In short, this bit of code is required for the receipient in this Example scenario to respond to the sender using the
+ * In short, this bit of code is required for the recipient in this Example scenario to respond to the sender using the
  * [ExampleFlow.Acceptor] flow.
  */
 object ExampleService {
