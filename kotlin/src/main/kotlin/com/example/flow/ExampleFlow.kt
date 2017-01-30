@@ -1,6 +1,7 @@
 package com.example.flow
 
 import co.paralleluniverse.fibers.Suspendable
+import net.corda.core.crypto.Party
 import net.corda.core.flows.FlowLogic
 
 /**
@@ -18,7 +19,7 @@ object ExampleFlow {
         override fun call() {}
     }
 
-    class Acceptor : FlowLogic<Unit>() {
+    class Acceptor(val otherParty: Party) : FlowLogic<Unit>() {
         /**
          * Define the acceptor's flow logic here.
          */

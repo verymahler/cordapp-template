@@ -10,9 +10,9 @@ import org.slf4j.Logger
 import rx.Observable
 
 /**
- *  Demonstration of using the CordaRPCClient to connect to a Corda Node and
- *  stream some State data from the node.
- **/
+ * Demonstration of using the CordaRPCClient to connect to a Corda Node and
+ * stream some State data from the node.
+ */
 fun main(args: Array<String>) {
     ExampleClientRPC().main(args)
 }

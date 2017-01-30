@@ -1,6 +1,6 @@
 package com.example.client;
 
-import com.example.contract.PurchaseOrderState;
+import com.example.state.ExampleState;
 import com.google.common.net.HostAndPort;
 import kotlin.Pair;
 import net.corda.core.messaging.CordaRPCOps;
@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * Demonstration of using the CordaRPCClient to connect to a Corda Node and
- * steam some State data from the node.
+ * stream some State data from the node.
  */
 public class ExampleClientRPC {
     public static void main(String[] args) throws ActiveMQException, InterruptedException, ExecutionException {
@@ -39,13 +39,13 @@ public class ExampleClientRPC {
         final List<SignedTransaction> txs = txsAndFutureTxs.getFirst();
         final Observable<SignedTransaction> futureTxs = txsAndFutureTxs.getSecond();
 
-        // Log the 'placed' purchase order states and listen for new ones.
+        // Log the existing ExampleStates and listen for new ones.
         futureTxs.startWith(txs).toBlocking().subscribe(
                 transaction ->
                         transaction.getTx().getOutputs().forEach(
                                 output -> {
-                                    final PurchaseOrderState poState = (PurchaseOrderState) output.getData();
-                                    logger.info(poState.getPurchaseOrder().toString());
+                                    final ExampleState exampleState = (ExampleState) output.getData();
+                                    logger.info(exampleState.toString());
                                 })
         );
     }
