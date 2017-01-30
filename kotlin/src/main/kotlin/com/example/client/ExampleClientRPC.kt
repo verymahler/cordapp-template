@@ -1,6 +1,6 @@
 package com.example.client
 
-import com.example.state.IOUState
+import com.example.state.ExampleState
 import com.google.common.net.HostAndPort
 import net.corda.core.transactions.SignedTransaction
 import net.corda.core.utilities.loggerFor
@@ -11,9 +11,8 @@ import rx.Observable
 
 /**
  *  Demonstration of using the CordaRPCClient to connect to a Corda Node and
- *  steam some State data from the node.
+ *  stream some State data from the node.
  **/
-
 fun main(args: Array<String>) {
     ExampleClientRPC().main(args)
 }
@@ -36,11 +35,11 @@ private class ExampleClientRPC {
         val (transactions: List<SignedTransaction>, futureTransactions: Observable<SignedTransaction>) =
                 proxy.verifiedTransactions()
 
-        // Log the 'placed' purchase order states and listen for new ones.
+        // Log the existing ExampleStates and listen for new ones.
         futureTransactions.startWith(transactions).toBlocking().subscribe { transaction ->
             transaction.tx.outputs.forEach { output ->
-                val state = output.data as IOUState
-                logger.info(state.iou.toString())
+                val state = output.data as ExampleState
+                logger.info(state.toString())
             }
         }
     }
