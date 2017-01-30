@@ -10,36 +10,19 @@ object ExampleFlow {
     /**
      * You can add a constructor to each FlowLogic subclass to pass objects into the flow.
      */
-    class Initiator: FlowLogic<ExampleFlowResult>() {
+    class Initiator: FlowLogic<Unit>() {
         /**
          * Define the initiator's flow logic here.
          */
         @Suspendable
-        override fun call(): ExampleFlowResult {
-            return ExampleFlowResult.Failure("")
-        }
+        override fun call() {}
     }
 
-    class Acceptor : FlowLogic<ExampleFlowResult>() {
+    class Acceptor : FlowLogic<Unit>() {
         /**
          * Define the acceptor's flow logic here.
          */
         @Suspendable
-        override fun call(): ExampleFlowResult {
-            return ExampleFlowResult.Failure("")
-        }
-    }
-}
-
-/**
- * Helper classes for returning results from flows.
- */
-sealed class ExampleFlowResult {
-    class Success(val message: String?): ExampleFlowResult() {
-        override fun toString(): String = "Success($message)"
-    }
-
-    class Failure(val message: String?): ExampleFlowResult() {
-        override fun toString(): String = "Failure($message)"
+        override fun call() {}
     }
 }
