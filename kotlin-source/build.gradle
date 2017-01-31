@@ -42,7 +42,7 @@ dependencies {
     compile "net.corda:test-utils:$corda_version"
     runtime "net.corda:corda:$corda_version"
 
-    // GraphStream: For visualisation (required by ExampleClientRPC app)
+    // GraphStream: For visualisation (required by TemplateClientRPC app)
     compile "org.graphstream:gs-core:1.3"
     compile("org.graphstream:gs-ui:1.3") {
         exclude group: "bouncycastle"
@@ -121,8 +121,8 @@ publishing {
     }
 }
 
-task runExampleClientRPC(type: JavaExec) {
+task runTemplateClientRPC(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'com.example.client.ExampleClientRPCKt'
+    main = 'com.template.client.TemplateClientRPCKt'
     args 'localhost:10004'
 }
